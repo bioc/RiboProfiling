@@ -484,7 +484,7 @@ funcPlotPairs <-
             data=gridData$densities, position="identity",
             colour="grey20", geom="line", lwd=1) +
         ggplot2::geom_abline(
-            ggplot2::aes(color="Diagonal", fill="Diagonal", intercept = 0),
+            ggplot2::aes(color="Diagonal", fill="Diagonal", intercept=0, slope=1),
             lwd=1) +
         ggplot2::geom_smooth(
             ggplot2::aes(x=x, y=y, color = "Linear_regression", fill = "Linear_regression"),

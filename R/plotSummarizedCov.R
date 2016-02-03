@@ -28,7 +28,7 @@
 #' @return a ggplot2 plot of read coverage in interval
 #' @export
 #' @importFrom ggbio tracks
-#' @import grid
+#' @importFrom grid unit
 #'
 
 plotSummarizedCov <-
@@ -50,7 +50,7 @@ plotSummarizedCov <-
         if(maxPeak <= 100){yLab <- "% of reads"}
         else{yLab <- "nbr reads"}
         iPlot <-
-            ggbio::ggplot(iSumCov, ggplot2::aes(start, values)) +
+            ggplot(iSumCov, ggplot2::aes(start, values)) +
             ggplot2::geom_point() +
             ggplot2::geom_line() +
             ggplot2::xlab("") +
@@ -81,7 +81,7 @@ plotSummarizedCov <-
         heights=rep(grid::unit(4, "cm"), length(listPlotSum)),
         main.height=grid::unit(1.75 * length(listPlotSum), "cm")
     )
-    
+
     return(trackPlotTSS)
 
 }
