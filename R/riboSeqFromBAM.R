@@ -82,7 +82,7 @@ riboSeqFromBAM <-
             }
             #gene annotations from UCSC
             txdb <- suppressWarnings(
-                GenomicFeatures::makeTranscriptDbFromUCSC(
+                GenomicFeatures::makeTxDbFromUCSC(
                     genome=genomeName,
                     tablename="ensGene",
                     url="http://genome-euro.ucsc.edu/cgi-bin/"
@@ -304,7 +304,7 @@ riboSeqFromBAM <-
     names(listInfo) <- namesInputBF
     names(listCodonCounts) <- namesInputBF
 
-    listCountsPlots <- 
+    listCountsPlots <-
         countsPlot(listCounts, grep("_counts$", colnames(listCounts[[1]])), 1)
     invisible(utils::capture.output(
         suppressWarnings(
