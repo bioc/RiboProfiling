@@ -1,6 +1,12 @@
+CHANGES IN VERSION 1.5.2
+-------------------------
+o Down-sampled the ctrlGAlignments.rda object from the data folder
+o Changed conflicting sweave-knitr in the vignette
+
+
 CHANGES IN VERSION 1.5.1
 -------------------------
-o For the vignette the example bam files have been down-samples and added to the extdata folder
+o For the vignette the example bam files have been down-sampled and added to the extdata folder
 o Changed the vignette accordingly
 
 CHANGES IN VERSION 1.1.6

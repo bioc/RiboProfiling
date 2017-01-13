@@ -111,11 +111,8 @@ suppressWarnings(suppressMessages(library(RiboProfiling)))
 @
 
 
-<<riboSeqfromBam,echo=FALSE,eval=TRUE,pdf=FALSE,jpeg=TRUE,fig.width=7>>=
-# listeInputBam <- c(
-#     Rsamtools::BamFile("http://genomique.info/data/public/RiboProfiling/ctrl.bam"),
-#     Rsamtools::BamFile("http://genomique.info/data/public/RiboProfiling/nutlin2h.bam")
-# )
+<<riboSeqfromBam,echo=FALSE,eval=TRUE,dev=c("png"),fig.width=7>>=
+
 myFileCtrl <- system.file("extdata", "ctrl_sample.bam", package="RiboProfiling")
 myFileNutlin2h <- system.file("extdata", "nutlin2h_sample.bam", package="RiboProfiling")
 listeInputBam <- c(myFileCtrl, myFileNutlin2h)
@@ -193,7 +190,7 @@ aln <- readGAlignments(
 @
 
 Or based on an already existing GAlignments object:
-<<Hist_quick,echo=TRUE,eval=TRUE,pdf=FALSE,jpeg=TRUE>>=
+<<Hist_quick,echo=TRUE,eval=TRUE,dev=c('png')>>=
 data(ctrlGAlignments)
 aln <- ctrlGAlignments
 matchLenDistr <- histMatchLength(aln, 0)
@@ -220,7 +217,7 @@ The initiation of protein synthesis starts with the first codon in the P-site. I
 \end{itemize}
 
 
-<<CovAroundTSS_quick,eval=FALSE,echo=TRUE,split=TRUE,fig=FALSE>>=
+<<CovAroundTSS_quick,eval=FALSE,echo=TRUE,split=TRUE>>=
 #transform the GAlignments object into a GRanges object
 #(faster processing of the object)
 alnGRanges <- readsToStartOrEnd(aln, what="start")
@@ -240,7 +237,7 @@ listPromoterCov <-
 plotSummarizedCov(listPromoterCov)
 @
 
-<<TSS_Cov,echo=FALSE,eval=TRUE,dev="pdf",fig.height=10,pdf=FALSE,jpeg=TRUE>>=
+<<TSS_Cov,echo=FALSE,eval=TRUE,fig.height=10,dev=c('png')>>=
 #transform the GAlignments object into a GRanges object
 #(faster processing of the object)
 alnGRanges <- readsToStartOrEnd(aln, what="start")
@@ -319,13 +316,14 @@ listCountsPlots
 
 
 
-<<CountReads,echo=FALSE,eval=TRUE,fig.width=7,pdf=FALSE,jpeg=TRUE>>=
+<<CountReads,echo=FALSE,eval=TRUE,fig.width=7,dev=c('png')>>=
 #get all CDSs by transcript
 cds <- GenomicFeatures::cdsBy(txdb, by="tx", use.names=TRUE)
 #get all exons by transcript
 exonGRanges <- GenomicFeatures::exonsBy(txdb, by="tx", use.names=TRUE)
 #get the per transcript relative position of start and end codons
-cdsPosTransc <- orfRelativePos(cds, exonGRanges)
+#cdsPosTransc <- orfRelativePos(cds, exonGRanges)
+data("cdsPosTransc")
 #compute the counts on the different features after applying
 #the specified shift value on the read start along the transcript
 countsDataCtrl1 <-
@@ -378,7 +376,7 @@ head(codonIndexCovCtrl[[1]], n=3)
 
 The \Rfunction{codonInfo} function associates the read coverage on codons with their corresponding codon type for each ORF. It returns a list of 2 matrices: one containing the frequency of each codon motif type in each ORF and the second containing the coverage of each codon motif type in each ORF.
 
-<<CodonAnalysis_echo,fig=FALSE,echo=TRUE,eval=FALSE>>=
+<<CodonAnalysis_echo,echo=TRUE,eval=FALSE>>=
 listReadsCodon <- countsDataCtrl1[[2]]
 #get the names of the expressed ORFs grouped by transcript
 cds <- cdsBy(txdb, use.names=TRUE)
@@ -391,7 +389,7 @@ codonData <- codonInfo(listReadsCodon, genomeSeq, orfCoord)
 @
 
 
-<<CodonAnalysis,fig=FALSE,echo=FALSE,eval=TRUE>>=
+<<CodonAnalysis,echo=FALSE,eval=TRUE>>=
 listReadsCodon <- countsDataCtrl1[[2]]
 #get the names of the ORFs for which we have coverage
 #grouped by transcript
@@ -402,7 +400,7 @@ genomeSeq <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
 codonData <- codonInfo(listReadsCodon, genomeSeq, orfCoord)
 @
 
-<<CountReads_res,fig=FALSE,results=TRUE,echo=TRUE,split=FALSE>>=
+<<CountReads_res,results=TRUE,echo=TRUE,split=FALSE>>=
 data("codonDataCtrl")
 head(codonDataCtrl[[1]], n=3)
 @
@@ -412,7 +410,7 @@ The codon coverage can be used to study the ribosome translation dynamics. One c
 
 
 %SweaveOpts{width=10, height=5}
-<<CodonPCA,echo=TRUE,eval=TRUE,pdf=FALSE,jpeg=TRUE>>=
+<<CodonPCA,echo=TRUE,eval=TRUE,dev=c("png")>>=
 codonUsage <- codonData[[1]]
 codonCovMatrix <- codonData[[2]]
 #keep only genes with a minimum number of reads

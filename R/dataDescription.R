@@ -45,5 +45,17 @@ NULL
 #' @return A list of 2 columns dataframes.
 NULL
 
+#' Per transcript relative position of start and end codons for dataset ctrlGAlignments
+#'
+#' A list of start and end codons relative to transcript
+#'
+#' @docType data
+#' @keywords datasets
+#' @name cdsPosTransc
+#' @usage data(cdsPosTransc)
+#' @format A list
+#' @return A list
+NULL
+
 
 

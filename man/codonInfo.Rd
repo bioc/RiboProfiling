@@ -17,8 +17,8 @@ It contains the full genome sequences for the organism.}
 The coordinates of the ORFs on the genome.}
 
 \item{motifSize}{an integer. The number of nucleotides in each motif
-on which to compute coverage and usage. Default 3 nucleotides (codon).
-No motif longer than 6 nucleotides is accepted.
+on which to compute coverage and usage. Either 3, 6, or 9.
+Default 3 nucleotides (codon).
 Attention! For long motifs, the function can be quite slow!!}
 }
 \value{
