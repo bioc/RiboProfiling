@@ -59,7 +59,7 @@ readStartCov1Aln <-
     }
     else{
         listReadStartCovNorm <-
-            normRange(listReadStartCov[ixReverse], fixedInterval)
+            normRange(listReadStartCov, fixedInterval)
     }
 
     #get the summarized coverage

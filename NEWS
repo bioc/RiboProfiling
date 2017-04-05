@@ -1,3 +1,9 @@
+CHANGES IN VERSION 1.5.3
+-------------------------
+o Corrected a bug in utils.R, readStartCov1Aln function. 
+	normRange(listReadStartCov, fixedInterval), in case ixReverse null
+
+
 CHANGES IN VERSION 1.5.2
 -------------------------
 o Down-sampled the ctrlGAlignments.rda object from the data folder
