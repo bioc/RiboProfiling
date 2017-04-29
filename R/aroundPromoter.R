@@ -62,7 +62,7 @@ aroundPromoter <-
 
     #keep only CDS on the chromosomes for which there are reads
     #cdsAllChr=cdsAll[seqnames(cdsAll) %in% seqInAlignment]
-    seqlevels(cdsAll, force=TRUE) <- as.character(seqInAlignment)
+    seqlevels(cdsAll, pruning.mode="coarse") <- as.character(seqInAlignment)
     cdsByGene <- cdsAll[S4Vectors::elementNROWS(cdsAll) != 0]
 
     #choose the best expressed CDSs
