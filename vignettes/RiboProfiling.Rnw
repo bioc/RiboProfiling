@@ -16,7 +16,7 @@
 \usepackage{caption}
 
 \title{RiboProfiling - Analysis and quality assessment of Ribosome-profiling data}
-\author{Alexandra Popa$^{1*}$\\[1em] \small{$^{1}$ Institut de Pharmacologie Moleculaire et Cellulaire (IPMC), Valbonne, FRANCE} \\ \small{\texttt{$^*$alexandra.mariela.popa@gmail.com}}}
+\author{Alexandra Popa}
 
 \newcommand{\lowtilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
 
