@@ -39,7 +39,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
 #Please make sure that seqnames of txdb correspond to
 #the seqnames of the alignment files ("chr" particle)
 #if not rename the txdb seqlevels
-#renameSeqlevels(txdb, sub("chr", "",seqlevels(txdb)))
+#seqlevels(txdb, sub("chr", "", seqlevels(txdb))
 #get the flanking region around the promoter of the best expressed CDSs
 
 #get all CDSs by transcript
@@ -69,4 +69,3 @@ listCountsPlots <- countsPlot(
 )
 listCountsPlots
 }
-

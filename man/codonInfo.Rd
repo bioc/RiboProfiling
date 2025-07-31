@@ -46,10 +46,8 @@ orfCoord <- cds[names(cds) \%in\% names(listReadsCodon)]
 #get the genome, please check that the genome has the same seqlevels
 genomeSeq <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
 #if not rename it
-#gSeq <- GenomeInfoDb::renameSeqlevels(genomeSeq,
-#sub("chr", "", GenomeInfoDb::seqlevels(genomeSeq)))
+#seqlevels(gSeq) <- sub("chr", "", seqlevels(genomeSeq))
 
 #codon frequency, coverage, and annotation
 codonData <- codonInfo(listReadsCodon, genomeSeq, orfCoord)
 }
-

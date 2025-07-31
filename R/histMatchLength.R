@@ -18,7 +18,8 @@
 #' #to plot the histogram
 #' matchLenDistr[[2]]
 #' @export
-#'
+#' @import methods
+
 histMatchLength <-
     function(
         aln,

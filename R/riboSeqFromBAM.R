@@ -2,7 +2,7 @@
 #' coverage on multiple transcript features and on codons.
 #'
 #'
-#' @importMethodsFrom GenomeInfoDb "seqlevels<-"
+#' @importMethodsFrom Seqinfo "seqlevels<-"
 #' @importMethodsFrom S4Vectors "runValue<-"
 #' @importFrom Rsamtools BamFile
 #' @param listeInputBamFile A character path or a vector of paths to the
@@ -48,6 +48,7 @@
 #' #in UCSC and your BAM correspond: the "chr" particle
 #' covData <- riboSeqFromBAM(listeInputBam, txdb=txdb, listShiftValue=c(-14))
 #' @export
+#' @import methods
 #' @import GenomicAlignments
 #' @import rtracklayer
 #'
@@ -158,7 +159,7 @@ riboSeqFromBAM <-
         #also add the info on the match size of the read
         alnGRanges <- readsToStartOrEnd(aln, what=offsetStartEnd)
 
-        if(length(unique(GenomeInfoDb::seqnames(alnGRanges))) <= 0){
+        if(length(unique(Seqinfo::seqnames(alnGRanges))) <= 0){
             stop("Coverage is null for all chromosomes. Check seqnames!\n")
         }
 
@@ -171,26 +172,26 @@ riboSeqFromBAM <-
         #if txdb and the BAM have differences in terms of "chr" name annotation
         seqLvlsInters <- length(
             intersect(
-                GenomeInfoDb::seqlevels(aln),
-                GenomeInfoDb::seqlevels(txdb)
+                Seqinfo::seqlevels(aln),
+                Seqinfo::seqlevels(txdb)
             ))
         myCond1 <-
-            seqLvlsInters / length(S4Vectors::runValue(GenomeInfoDb::seqnames(aln))) * 100 <= 80
+            seqLvlsInters / length(S4Vectors::runValue(Seqinfo::seqnames(aln))) * 100 <= 80
         myCond2 <-
-            seqLvlsInters / length(GenomeInfoDb::seqlevels(txdb)) * 100 <= 80
+            seqLvlsInters / length(Seqinfo::seqlevels(txdb)) * 100 <= 80
         if(myCond1 && myCond2){
             warning("Differences in seqlevels between the txdb and the BAM! \n")
             message(
                 paste(
                     "# The BAM file has the following seqlevels: \n",
-                    paste(GenomeInfoDb::seqlevels(aln), sep="\t"),
+                    paste(Seqinfo::seqlevels(aln), sep="\t"),
                     "\n",
                     sep="")
             )
             message(
                 paste(
                     "# The transcript database file has the following seqlevels: \n",
-                    paste(GenomeInfoDb::seqlevels(txdb), sep="\t"),
+                    paste(Seqinfo::seqlevels(txdb), sep="\t"),
                     "\n",
                     sep="")
             )

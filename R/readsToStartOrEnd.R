@@ -15,6 +15,7 @@
 #' #transform the GAlignments object into a GRanges object (faster processing)
 #' alnGRanges <- readsToStartOrEnd(aln, what = "end")
 #' @export
+#' @import methods
 
 
 readsToStartOrEnd <-
@@ -46,7 +47,7 @@ readsToStartOrEnd <-
 
     alnGRanges <-
         GenomicRanges::GRanges(
-            GenomeInfoDb::seqnames(aln),
+            Seqinfo::seqnames(aln),
             borderRead,
             strand=BiocGenerics::strand(aln),
             score=GenomicAlignments::cigarWidthAlongReferenceSpace(

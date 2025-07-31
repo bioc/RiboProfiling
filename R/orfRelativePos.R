@@ -20,6 +20,7 @@
 #' #retrieve the positions of start and end codons relative to the transcript
 #' cdsPosTransc <- orfRelativePos(cds, exonGRanges)
 #' @export
+#' @import methods 
 
 orfRelativePos <-
     function(

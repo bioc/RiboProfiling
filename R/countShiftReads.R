@@ -45,7 +45,7 @@
 #' #Please make sure that seqnames of txdb correspond to
 #' #the seqnames of the alignment files ("chr" particle)
 #' #if not rename the txdb seqlevels
-#' #renameSeqlevels(txdb, sub("chr", "", seqlevels(txdb)))
+#' #seqlevels(txdb) <- sub("chr", "", seqlevels(txdb))
 #'
 #' #get all CDSs by transcript
 #' cds <- GenomicFeatures::cdsBy(txdb, by="tx", use.names=TRUE)
@@ -61,6 +61,7 @@
 #' countsData <- countShiftReads(exonGRanges[names(cdsPosTransc)], cdsPosTransc,
 #'            alnGRanges, -14)
 #' @export
+#' @import methods
 
 countShiftReads <-
     function(

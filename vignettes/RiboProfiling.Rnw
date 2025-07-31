@@ -247,7 +247,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
 #Please make sure that seqnames of txdb correspond to the seqnames
 #of the alignment files ("chr" particle)
 #if not rename the txdb seqlevels
-#renameSeqlevels(txdb, sub("chr", "", seqlevels(txdb)))
+#seqlevels(txdb) <- sub("chr", "", seqlevels(txdb))
 #get the flanking region around the promoter of the 0.1% best expressed CDSs
 oneBinRanges <- aroundPromoter(txdb, alnGRanges, percBestExpressed=0.001)
 #the coverage in the TSS flanking region for the summarized read match sizes
